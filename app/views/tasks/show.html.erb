@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">
+      <strong>TASK :</strong>
+      <span><%= @task.subject %></span>      
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>      
+      <td>
+      <strong>ASSIGNEE :</strong>
+      <span><%= @task.assignee %></span>      
+      </td>
+    </tr>
+        <tr>      
+      <td>
+      <strong>STATUS :</strong>
+      <span><%= @task.status %></span>
+      </td>
+    </tr>
+        <tr>      
+      <td>
+      <strong>DESCRIPTION :</strong>
+      <span><%= @task.description %></span>
+      </td>
+    </tr>
+    <tr>      
+      <td>
+      <strong>CREATED BY :</strong>
+      <span><%= @task.created_by %></span>      
+      </td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>
