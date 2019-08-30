@@ -1,0 +1,19 @@
+# Autocorrection spec
+Rails:
+  Enabled: true
+
+# Disable default-comment
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# The max row size
+Metrics/LineLength:
+  Max: 120
+
+# Disabling comments for classes and  methods
+Style/Documentation:
+  Enabled: false
+
+# The max size for methods
+Metrics/MethodLength:
+  Max: 30
