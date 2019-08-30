@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">SUBJECT</th>
+      <th scope="col">ASSIGNEE</th>
+      <th scope="col">STATUS</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">CREATED BY</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |task| %>
+    <tr>
+      <th scope="row">
+      <%= task.id %>
+      </th>
+      <td>
+        <%= task.subject %>
+      </td>
+      <td>
+        <%= task.assignee %>
+      </td>
+      <td>
+        <%= task.status %>
+      </td>
+      <td>
+        <%= task.description %>
+      </td>
+      <td>
+        <%= task.created_by %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>
