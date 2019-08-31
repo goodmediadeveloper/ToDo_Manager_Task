@@ -55,3 +55,5 @@ gem 'simple_form'
 # Font Awesome icons
 gem 'font-awesome-sass'
 
+# Rspec tests whith rubocop
+gem 'rubocop-rspec'
