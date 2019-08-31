@@ -12,11 +12,11 @@
       <th scope="col">CREATED BY</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="taskListTable-body">
   <% @tasks.each do |task| %>
     <tr>
-      <th scope="row">
-      <%= task.id %>
+      <th scope="row" class="counter_item">
+      
       </th>
       <td>
         <%= task.subject %>
@@ -33,6 +33,16 @@
       <td>
         <%= task.created_by %>
       </td>
+
+      <td>
+      <%= link_to 'Show', task_path(task) %>
+      </td>
+      <td>
+      <%= link_to 'Edit', edit_task_path(task) %>
+      </td>
+      <td><%= link_to 'Delete', task_path(task),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
@@ -41,7 +51,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-    <%= link_to 'Create new task', new_task_path %>
+    <a href="#"><i class="fas fa-plus-circle"></i></a>
     </div>
   </div>
 </div>
