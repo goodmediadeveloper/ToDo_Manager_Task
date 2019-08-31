@@ -50,3 +50,6 @@ gem 'bootstrap', '~> 4.3.1'
 
 # Simple form templates
 gem 'simple_form'
+
+# Font Awesome icons
+gem 'font-awesome-sass'
