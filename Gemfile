@@ -57,3 +57,6 @@ gem 'font-awesome-sass'
 
 # Rspec tests whith rubocop
 gem 'rubocop-rspec'
+
+# Lazy authentication
+gem 'devise'

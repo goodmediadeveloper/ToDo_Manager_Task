@@ -3,8 +3,16 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
     <h1>Hello !!! I'm Start Page for This Progect !!!!</h1>
     <%= link_to 'My Task Manager', controller: 'tasks' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+    <%= link_to 'Sign Up', new_user_registration_path %>
+    <%= link_to 'Sign In', new_user_session_path %>
     </div>
   </div>
 </div>
