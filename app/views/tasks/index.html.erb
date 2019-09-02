@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+    <p>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
+    </p>
+    <p>
+    <%= current_user.email %>
+    </p>
     <table class="table table-striped">
   <thead>
     <tr>

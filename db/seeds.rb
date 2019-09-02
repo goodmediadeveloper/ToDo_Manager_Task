@@ -8,25 +8,30 @@
 
 require 'faker'
 
-4.times do
-  User.create([{
-    name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password: Faker::Internet.password
-  }])
-end
+
 
 2.times do
-  Admin.create([
+  User.create([
     {
     name: "God",
     email: "paradise@mail.paradise",
-    password: "12apostols"
+    password: "12apostols",
+    admin: true
     },
     {
     name: "Devil",
     email: "hell@mail.hell",
-    password: "baby1998"
+    password: "baby1998",
+    admin: true
     }
   ])
+end
+
+4.times do
+  User.create([{
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    admin: false
+  }])
 end
