@@ -8,15 +8,19 @@
 </div>
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
+    
     <%= simple_form_for @task do |f| %>
-  <%= f.input :subject, label: 'Write  subject for task' %>
-  <%= f.input :assignee, label: 'Indicate  assignee for this task' %>
-  <%= f.input :status, hint: 'If you want,can to select required from this list.',label: 'As default will use "ToDo" status', as: :select, collection: [['0', 'ToDo'], ['1', 'In Progress'], ['2', 'In Rewiew'], ['3', 'Done']], label_method: :second, value_method: :second, selected: :first %>
-  <%= f.input :description, as: :text %>
-  <!--<%= f.input :created_by, label: 'Created by' %>-->
-  <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.email } %>
-  <%= f.button :submit, :class=>'btn btn-lg btn-block btn-primary'%>
-<% end %>
+        <%= f.input :subject, label: 'Write  subject for task' %>
+                <%= f.input :assignee, hint: 'If you want,can to select required from this list.',label: 'Select addigneer', as: :select, collection: @users, label_method: :second, value_method: :second %>
+
+       
+        <!-- <%= f.input :assignee, label: 'Indicate  assignee for this task' %> -->
+        <%= f.input :status, hint: 'If you want,can to select required from this list.',label: 'As default will use "ToDo" status', as: :select, collection: [['0', 'ToDo'], ['1', 'In Progress'], ['2', 'In Rewiew'], ['3', 'Done']], label_method: :second, value_method: :second, selected: :first %>
+        <%= f.input :description, as: :text %>
+        <!--<%= f.input :created_by, label: 'Created by' %>-->
+        <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.email } %>
+        <%= f.button :submit, :class=>'btn btn-lg btn-block btn-primary'%>
+    <% end %>
     </div>
   </div>
   <div class="row">

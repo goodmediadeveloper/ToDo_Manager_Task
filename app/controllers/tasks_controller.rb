@@ -2,8 +2,13 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = Task.all
-    authorize @tasks
+
+
+    if !current_user.admin
+      @tasks = Task.all.find_all { |task| task.assignee == current_user.email}
+    else
+      @tasks = Task.all.find_all { |task| task.created_by == current_user.email}
+    end
   end
 
   def show
@@ -12,10 +17,24 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    @status = [
+      ['0', 'ToDo'],
+      ['1', 'In Progress'],
+      ['2', 'In Rewiew'],      
+    ]
+    if current_user.admin
+      @status.push(['3', 'Done'])      
+    end
   end
 
   def new
-    @task = Task.new
+    @task = Task.new    
+    @users = []
+    User.all.each do |user|
+      if !user.admin
+        @users.push([user.id,user.email])
+      end
+    end
   end
 
   def create

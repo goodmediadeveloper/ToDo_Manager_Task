@@ -6,13 +6,13 @@
     <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
     <h1>Hello !!! I'm Start Page for This Progect !!!!</h1>
-    <%= link_to 'My Task Manager', controller: 'tasks' %>
+    <%= link_to 'My Task Manager', controller: 'tasks', :class => 'btn btn-primary btn-sm btn-block' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-6 offset-3">
-    <%= link_to 'Sign Up', new_user_registration_path %>
-    <%= link_to 'Sign In', new_user_session_path %>
+    <div class="col-6">
+    <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-primary btn-sm' %>
+    <%= link_to 'Sign In', new_user_session_path, :class => 'btn btn-primary btn-sm'  %>
     </div>
   </div>
 </div>

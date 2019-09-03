@@ -8,11 +8,26 @@
 </div>
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
-    <%= simple_form_for @task do |f| %>
-  <%= f.input :subject, label: 'Write  subject for task' %>
-  <%= f.input :assignee, label: 'Indicate  assignee for this task' %>
-  <%= f.input :status, hint: 'If you want,can to select required from this list.',label: 'As default will use "ToDo" status', as: :select, collection: [['0', 'ToDo'], ['1', 'In Progress'], ['2', 'In Rewiew'], ['3', 'Done']], label_method: :second, value_method: :second, selected: :first %>
-  <%= f.input :description, as: :text %>
+
+<%= simple_form_for @task do |f| %>
+       <% if current_user.admin %>
+         <%= f.input :subject, label: 'Write  subject for task' %>
+      <%= f.input :assignee, label: 'Indicate  assignee for this task' %>
+ <% end %>
+
+
+
+<% if !current_user.admin && @task.status == 'In Rewiew' %>
+      <%= f.input :status, hint: '',label: 'The task is on the checking', as: :select, collection: [['0','In Rewiew']], label_method: :second, value_method: :second, selected: :first %>
+<% else %>
+        <%= f.input :status, hint: 'If you want,can to select required from this list.',label: 'As default will use "ToDo" status', as: :select, collection: @status, label_method: :second, value_method: :second, selected: :first %>
+<% end %>   
+
+
+    <% if current_user.admin %>
+      <%= f.input :description, as: :text %>
+    <% end %>
+    
   
   <%= f.button :submit, :class=>'btn btn-lg btn-block btn-primary'%>
 <% end %>
