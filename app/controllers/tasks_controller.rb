@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    authorize @tasks
   end
 
   def show
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    authorize @task
     if @task.update(task_params)
       redirect_to @task
     else
@@ -37,6 +39,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
+    authorize @task
     @task.destroy
 
     redirect_to tasks_path

@@ -61,4 +61,8 @@ gem 'rubocop-rspec'
 # Lazy authentication
 gem 'devise'
 
+# Fake 
 gem 'faker'
+
+#
+gem 'pundit'
