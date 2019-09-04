@@ -2,12 +2,13 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
-
+    @q = Task.ransack(params[:q])
     if !current_user.admin
-      @tasks = Task.all.find_all { |task| task.assignee == current_user.email}
+      # @tasks = Task.all.find_all { |task| task.assignee == current_user.email}
+      @tasks = @q.result.find_all { |task| task.assignee == current_user.email}
     else
-      @tasks = Task.all.find_all { |task| task.created_by == current_user.email}
+      # @tasks = Task.all.find_all { |task| task.created_by == current_user.email}
+      @tasks = @q.result.find_all { |task| task.created_by == current_user.email}
     end
   end
 

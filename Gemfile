@@ -64,5 +64,10 @@ gem 'devise'
 # Fake 
 gem 'faker'
 
-#
+# Rules authorization
 gem 'pundit'
+
+# Search, sorting in the datas
+gem 'ransack'
+
+
