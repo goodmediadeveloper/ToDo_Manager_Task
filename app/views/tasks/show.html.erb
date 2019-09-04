@@ -50,3 +50,51 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+    <h2>Comments</h2>
+<% @task.comments.each do |comment| %>
+  <p>
+    <strong>Author:</strong>
+    <%= comment.author %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+<%= comment.body %>
+  </p>
+
+<p>
+    <%= link_to 'Destroy Comment', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-sm'%>
+</p>
+<% end %>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+    <%= simple_form_for [@task, @task.comments.build] do |f| %>
+<%= f.input :author, :as => :hidden, :input_html => { :value => current_user.email } %>
+<%= f.input :body %>
+
+<%= f.submit 'Send', :class => 'btn btn-secondary btn-sm btn-block'%>
+<% end %>
+
+
+
+    </div>
+  </div>
+</div>
+
+

@@ -16,8 +16,3 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-var date = new Date
-console.log(
-  date.getUTCFullYear()+'-'+
-  date.getUTCFullYear()+'-'+
-  );

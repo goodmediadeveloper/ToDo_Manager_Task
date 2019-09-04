@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-12">
     <p>
-<%= button_to 'Exit', destroy_user_session_path, method: :delete, :class => 'btn btn-danger' %>
+<%= link_to 'Exit', destroy_user_session_path, method: :delete, :class => 'btn btn-danger' %>
     </p>
     <p>
     <%= current_user.email %>
@@ -76,7 +76,6 @@
       <%= link_to 'Show', task_path(task) %>
       </td>
       <td>
-      <!-- <%= link_to 'Edit', edit_task_path(task) %> -->
 
       <% if policy(task).update? %>
         <%= link_to "Edit", edit_task_path(task) %>
