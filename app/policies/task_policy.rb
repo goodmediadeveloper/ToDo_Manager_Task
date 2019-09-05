@@ -37,6 +37,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def new?
+    # return true if user.email == task.created_by
     create?
   end
 end

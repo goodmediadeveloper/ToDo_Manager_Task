@@ -14,15 +14,13 @@ require 'faker'
   User.create([
     {
     name: "God",
-    # email: "paradise@mail.paradise",
-    email: "goodmediadeveloper@gmail.com",
+    email: "paradise@mail.paradise",
     password: "12apostols",
     admin: true
     },
     {
     name: "Devil",
-    # email: "hell@mail.hell",
-    email: "dimitriyprokharau@gmail.com",
+    email: "hell@mail.hell",
     password: "baby1998",
     admin: true
     }

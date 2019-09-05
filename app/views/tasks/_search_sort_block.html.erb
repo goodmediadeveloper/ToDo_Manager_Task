@@ -1,0 +1,62 @@
+<%= search_form_for @q, :class => 'form-line' do |f| %>
+<div class="row">
+  <div class="col-12">
+
+    <div class="input-group mb-3">
+      <%= f.search_field :subject_or_status_or_assignee_cont, placeholder: 'Search...', :class => 'form-control searchInput' %>
+      <div class="input-group-append">
+        <%= f.submit :class => 'btn btn--visualBlue' %>
+      </div>
+    </div>
+
+    <ul class="sortList">
+      <li class="sortList__item">
+        <%= sort_link(@q, :created_at, 'Sort by creation date', default_order: :desc) %>
+      </li>
+      <li class="sortList__item">
+        <%= sort_link(@q, :subject, 'Sort by subject', default_order: :desc) %>
+      </li>
+      <li class="sortList__item">
+        <%= sort_link(@q, :assignee, 'Sort by assignee', default_order: :desc) %>
+      </li>
+    </ul>
+
+    <div class="wrappCreateBtn">
+      <%= link_to(new_task_path, html_options = {class:'btn d-flex align-items-center justify-content-center  btn--visualCreate'}) do %>
+            Create new
+            <i class="fas fa-plus-circle"></i>
+      <% end %>
+
+
+    </div>
+
+    
+
+
+
+  </div>
+</div>
+<!--<div class="row">
+  <div class="col-12">
+  </div>
+  <div class="col-6">
+  
+  </div>
+  <div class="col-4">
+   <%# <%= sort_link @q, :created_at "Sort by date" %>
+   <p>
+   
+   </p>
+   <p>
+   
+   </p>
+   <p>
+   
+   </p>
+  </div>
+  <div class="col-2">
+  <%= f.submit :class => 'btn btn-secondary btn-block' %>
+  </div>
+
+</div>-->
+<% end %>

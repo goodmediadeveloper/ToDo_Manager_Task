@@ -16,3 +16,17 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+
+window.onload = function() {
+  var colorBorderStatus = function (arr,indic) {
+    for (let i = 0; i < arr.length; i++) {
+      var str = indic[i].lastChild.data.trim().split(" ").join("");
+      arr[i].classList.add(str) ;
+  }
+}
+
+colorBorderStatus(
+    document.getElementsByClassName('cardTask__headTop'),
+    document.getElementsByClassName('status')
+    )
+};

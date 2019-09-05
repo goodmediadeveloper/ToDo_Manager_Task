@@ -1,0 +1,41 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-3 col-12 offset-0">
+        <div class="cardNewEditTask">
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-6 d-flex align-items-center">
+                  <h1>New task</h1>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">
+              
+                  <p>
+                    <%= link_to 'Back', tasks_path, :class => 'btn btn--visualBlue' %>
+                  </p>              
+              </div>
+
+            </div><!--row-->
+
+            <div class="row">
+              <div class="col-12">
+                <%= simple_form_for @task do |f| %>
+                    <%= f.input :subject, label: 'Write  subject for task' %>
+                    <%= f.input :assignee, hint: 'If you want,can to select required from this list.',label: 'Select addigneer', as: :select, collection: @users, label_method: :second, value_method: :second %>
+
+
+                    <%= f.input :status, hint: 'If you want,can to select required from this list.',label: 'As default will use "ToDo" status', as: :select, collection: [['0', 'ToDo'], ['1', 'In Progress'], ['2', 'In Rewiew'], ['3', 'Done']], label_method: :second, value_method: :second, selected: :first %>
+                    <%= f.input :description, as: :text %>
+                    <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.email } %>
+                    <%= f.button :submit, :class=>'btn btn-block btn--visualCreate'%>
+                <% end %>
+              </div>
+            </div><!--row-->
+
+
+          </div><!--container-fluid-->
+        </div>
+    </div>
+  </div>
+</div>

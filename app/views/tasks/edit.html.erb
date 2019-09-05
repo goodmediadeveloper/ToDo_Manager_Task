@@ -1,19 +1,33 @@
-
-
-
+<%= render 'header' %>
+<main class="main">
 <div class="container">
-<div class="row">
-  <div class="col-lg-6 offset-3">
-  <h1>Hello !!! I'm New page View !!!</h1></div>
-</div>
   <div class="row">
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-6 offset-3 col-12 offset-0">
+      <div class="cardNewEditTask">
+          <div class="container-fluid">
+            <div class="row">
 
-<%= simple_form_for @task do |f| %>
+              <div class="col-6 d-flex align-items-center">
+                  <h1>New task</h1>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">              
+                  <p>
+                    <%= link_to 'Back', tasks_path, :class => 'btn btn--visualBlue' %>
+                  </p>              
+              </div>
+
+            </div><!--row-->
+
+
+            <div class="row">
+              <div class="col-12">
+
+
+                <%= simple_form_for @task do |f| %>
        <% if current_user.admin %>
-         <%= f.input :subject, label: 'Write  subject for task' %>
-      <%= f.input :assignee, label: 'Indicate  assignee for this task' %>
- <% end %>
+          <%= f.input :subject, label: 'Write  subject for task' %>
+          <%= f.input :assignee, label: 'Indicate  assignee for this task' %>
+        <% end %>
 
 
 
@@ -31,13 +45,13 @@
   
   <%= f.button :submit, :class=>'btn btn-lg btn-block btn-primary'%>
 <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 offset-3">
-    <p>
-    <span><%= link_to 'Show all task', tasks_path %></span>
-    </p>
+
+
+              </div><!--col-12-->
+            </div><!--row-->
+          </div>
+      </div> <!--cardNewEditTask-->   
     </div>
   </div>
 </div>
+</main>

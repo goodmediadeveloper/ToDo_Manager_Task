@@ -1,0 +1,77 @@
+<% @tasks.each do |task| %>
+<div class="col-lg-3 col-12">   
+  <article class="cardTask">
+    <header class="cardTask__head">
+      <div class="cardTask__headTop d-flex justify-content-between">
+          <p class="d-flex flex-column justify-content-start status">
+              <span>status : </span>
+              <%= task.status %>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <i class="far fa-comment-alt"></i>
+            <span>
+              <%= task.comments.count %>
+            </span>
+          </p>
+      </div>
+
+     
+      <div class="cardTask__headBottom">
+        <h3 class="cardTask__capt">
+          <%= task.subject %><br>
+        </h3>        
+      </div>
+
+
+      <%= link_to('', task_path(task), html_options = {class:"cardTask__linkShow"}) %>
+    </header>
+
+    
+    <div  class="cardTask__content"> 
+      <% if @current_user.admin? %>       
+        <p class="cardTask__contentText">
+          <strong>Contracted : </strong>
+          <span><%= task.assignee %></span>
+        </p>
+        <% else %>
+        <p class="cardTask__contentText">
+          <strong>Created by : </strong>
+          <span><%= task.created_by %></span>
+        </p>
+        <% end %>
+        <details class="cardTask__details">
+            <summary>Task description</summary>
+            <p class="cardTask__detailsText">
+              <span>
+                <%= task.description %>
+              </span>              
+            </p>
+            <%= link_to('Read more...', task_path(task), html_options = {class:""}) %>
+        </details>
+    </div>
+    
+
+  
+    <footer class="cardTask__footer">
+      <ul class="cardTask__listBtn">            
+          <% if policy(task).update? %>
+          <li class="cardTask__itemBtn">
+              <%= link_to "Edit", edit_task_path(task) %>
+          </li>
+          <% end %>
+          
+          
+            <% if policy(task).destroy? %>
+              <li class="cardTask__itemBtn">
+              <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </li>
+          <% end %>
+          
+      </ul>      
+    </footer>
+
+  
+</article>
+</div>
+<% end %><!--END each-->

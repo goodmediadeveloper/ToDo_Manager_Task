@@ -14,6 +14,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @current_user1 = @current_user
   end
 
   def edit
@@ -42,10 +43,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       # Сказать UserMailer отослать приветственное письмо после сохранения
-      UserMailer.with(user: @user).welcome_email.deliver_later
+      UserMailer.with(@task.assignee).welcome_email.deliver_later
 
-      format.html { redirect_to(@user, notice: 'User was successfully created.') }
-      format.json { render json: @user, status: :created, location: @user }
+      # format.html { redirect_to(@task, notice: 'User was successfully created.') }
+      # format.json { render json: @task, status: :created, location: @task }
       redirect_to @task
     else
       render 'new'

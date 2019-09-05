@@ -1,100 +1,106 @@
-<div class="container">
+<%= render 'header' %>
+
+<main class="main">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-6 offset-3">
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">
-      <strong>TASK :</strong>
-      <span><%= @task.subject %></span>      
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>      
-      <td>
-      <strong>ASSIGNEE :</strong>
-      <span><%= @task.assignee %></span>      
-      </td>
-    </tr>
-        <tr>      
-      <td>
-      <strong>STATUS :</strong>
-      <span><%= @task.status %></span>
-      </td>
-    </tr>
-        <tr>      
-      <td>
-      <strong>DESCRIPTION :</strong>
-      <span><%= @task.description %></span>
-      </td>
-    </tr>
-    <tr>      
-      <td>
-      <strong>CREATED BY :</strong>
-      <span><%= @task.created_by %></span>      
-      </td>
-    </tr>
-  </tbody>
-</table>
-    </div>
-  </div>
+    <div class="col-lg-5 col-12">
+
+        <div class="container-fluid">
+          
+          <div class="row">
+            <div class="col-lg-10 offset-lg-1 col-12 offset-0">
+              <div class="wrappMainCapt">
+                <h1 class="wrappMainCapt__capt">
+                  <strong><%= @task.subject %></strong> 
+                  <i class="fas fa-theater-masks"></i> 
+                </h1>
+              </div>
+            </div>
+          </div><!--row-->
+
+          <div class="row">
+            <div class="col-lg-10 offset-lg-1 col-12 offset-02">
+              <ul class="dateList">
+                <li class="dateList__item">
+              <strong>Contractor  :</strong><br>
+              <span><%= @task.assignee %></span>  
+                </li>
+                <li class="dateList__item">
+              <strong>STATUS :</strong><br>
+              <span><%= @task.status %></span>
+                </li>
+                <li class="dateList__item">
+              <strong>DESCRIPTION :</strong><br>
+              <span><%= @task.description %></span>
+                </li>
+                <li class="dateList__item">
+              <strong>CREATED BY :</strong><br>
+              <span><%= @task.created_by %></span>  
+                </li>
+                <li class="dateList__item">
+              <%= link_to 'Back', tasks_path, :class => 'btn btn-sm btn--visualBlue'  %>
+                </li>
+              </ul>
+            </div>
+          </div><!--row-->
+
+          <div class="row">
+            <div class="col-12"></div>
+          </div><!--row-->
+
+        </div><!--container-->
+
+    </div><!--col-left-->
+    <div class="col-lg-7 col-12">
+
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+              <div class="wrappSecondCapt">
+                <h2 class="wrappSecondCapt__capt">Comments</h2>
+                <ul class="commentList">
+                <% @task.comments.each do |comment| %>
+                
+                  <li class="commentList__item">
+                    <p>
+                      <strong>
+                      <i class="fas fa-user-circle"></i>
+                      </strong>
+                      <span>
+                        <%= comment.author %>
+                      </span>
+                      </p>
+                    <p class="commentList__comment">
+                      <%= comment.body %>
+                    </p>
+                    <p>
+                      <% if current_user.admin? %>
+                    <p>
+                      <%= link_to 'Delete', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn--visualRed'%>
+                    </p>
+                  <% end %>
+                    </p>
+                  </li>
+                
+                 <% end %>
+                </ul>
+              </div>
+
+            </div><!--col-12-->
+        </div><!--row-->
+      </div>               
+    </div><!--col-right-->
+  </div><!--main-row-->
   <div class="row">
-    <div class="col-6 offset-3">
-    <p>
-    <span><%= link_to 'Show all task', tasks_path, :class => 'btn btn-secondary btn-sm'  %></span>
-    <span>
-    <%= link_to 'Create new task', new_task_path, :class => 'btn btn-secondary btn-sm'  %>
-    </span>
-    </p>
-    </div>
-  </div>
-</div>
+    <div class="col-lg-6 offset-lg-3 col-12 offset-0">
 
+      <%= simple_form_for [@task, @task.comments.build] do |f| %>
+        <%= f.input :author, :as => :hidden, :input_html => { :value => current_user.email } %>
+        <%= f.input :body, as: :text %>
+        <%= f.submit 'Send', :class => 'btn btn-secondary btn-sm btn-block'%>
+      <% end %>
 
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-6 offset-3">
-    <h2>Comments</h2>
-<% @task.comments.each do |comment| %>
-  <p>
-    <strong>Author:</strong>
-    <%= comment.author %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-<%= comment.body %>
-  </p>
-
-<p>
-    <%= link_to 'Destroy Comment', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-sm'%>
-</p>
-<% end %>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-6 offset-3">
-    <%= simple_form_for [@task, @task.comments.build] do |f| %>
-<%= f.input :author, :as => :hidden, :input_html => { :value => current_user.email } %>
-<%= f.input :body %>
-
-<%= f.submit 'Send', :class => 'btn btn-secondary btn-sm btn-block'%>
-<% end %>
-
-
-
-    </div>
-  </div>
-</div>
-
-
+    </div><!--col-comment-->
+  </div><!--row-comment-->
+</div><!--main-container--></main>

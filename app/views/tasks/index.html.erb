@@ -1,113 +1,19 @@
+<%= render 'header' %>
+<main class="main">
 <div class="container-fluid">
 <div class="row">
-<div class="col-6 offset-3">
-<%= search_form_for @q, :class => 'form-line' do |f| %>
-<div class="row">
-  <div class="col-12">
+<% if @current_user.admin? %> 
+  <div class="col-3">
+    <%= render 'search_sort_block' %>
   </div>
-  <div class="col-6">
-  <%= f.search_field :subject_or_assignee_or_status_cont, placeholder: 'Search...', :class => 'form-control' %>
-  </div>
-  <div class="col-4">
-   <%# <%= sort_link @q, :created_at "Sort by date" %>
-   <p>
-   <%= sort_link(@q, :created_at, 'Sort by creation date', default_order: :desc) %>
-   </p>
-   <p>
-   <%= sort_link(@q, :subject, 'Sort by subject', default_order: :desc) %>
-   </p>
-   <p>
-   <%= sort_link(@q, :assignee, 'Sort by assignee', default_order: :desc) %>
-   </p>
-  </div>
-  <div class="col-2">
-  <%= f.submit :class => 'btn btn-secondary btn-block' %>
-  </div>
-
-</div>
 <% end %>
-</div>
-</div>
-
-
-
-  <div class="row">
-    <div class="col-12">
-    <p>
-<%= link_to 'Exit', destroy_user_session_path, method: :delete, :class => 'btn btn-danger' %>
-    </p>
-    <p>
-    <%= current_user.email %>
-    </p>
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">SUBJECT</th>
-      <th scope="col">ASSIGNEE</th>
-      <th scope="col">STATUS</th>
-      <th scope="col">DESCRIPTION</th>
-      <th scope="col">CREATED BY</th>
-    </tr>
-  </thead>
-  <tbody class="taskListTable-body">
-  <% @tasks.each do |task| %>
-    <tr>
-      <th scope="row" class="counter_item">
-      
-      </th>
-      <td>
-        <%= task.subject %>
-      </td>
-      <td>
-        <%= task.assignee %>
-      </td>
-      <td>
-        <%= task.status %>
-      </td>
-      <td>
-        <%= task.description %>
-      </td>
-      <td>
-        <%= task.created_by %>
-      </td>
-
-      <td>
-      <%= link_to 'Show', task_path(task) %>
-      </td>
-      <td>
-
-      <% if policy(task).update? %>
-        <%= link_to "Edit", edit_task_path(task) %>
-      <% end %>
-
-      </td>
-      <td>
-      <% if policy(task).destroy? %>
-      <%= link_to 'Delete', task_path(task),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-      <% end %>
-            
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-    
-
-<%= link_to  new_task_path ,:class=>'btn btn-secondary btn-sm' do %>
-<span>
-Create new task 
-</span>
-  <i class="fas fa-plus-circle"></i>
-<% end %>
-
-
+  <div class="col">
+    <div class="row">
+      <%= render 'card_task' %>
     </div>
   </div>
 </div>
+</div>
+</main>
+
+

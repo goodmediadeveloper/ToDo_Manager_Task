@@ -1,5 +1,4 @@
 class Task < ApplicationRecord
-  # belongs_to :user
   has_many :comments
   validates :subject, presence: true
   validates :assignee, presence: true

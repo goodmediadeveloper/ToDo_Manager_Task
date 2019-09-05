@@ -1,0 +1,43 @@
+<header class="header fixed-top">
+<div class="container-fluid">
+<div class="row">
+
+  <div class="col-xl-1 col-lg-1 col-12 d-flex align-items-center justify-content-lg-end justify-content-center">
+    <a href="/tasks" class="headerLogo">
+      <%= image_tag "logo.svg", :class => 'headerLogo__img' %>   
+    </a>
+  </div>
+
+  <div class="col-xl-7 col-lg-8 col-12 offset-xl-4 offset-lg-3 offset-0 d-flex justify-content-lg-end justify-content-md-between justify-content-center flex-xl-row flex-lg-row flex-column">
+    <ul class="headerAccountList d-flex align-items-center">
+      <% if current_user.admin? %> 
+            <li class="headerAccountList__item">
+              <strong><%= current_user.name %></strong>&nbsp;(Admin) 
+            </li>
+      <% end %>
+      <li class="headerAccountList__item">
+        <i class="fas fa-user-circle"></i>
+        <span>          
+        <%= current_user.email %>
+        </span>
+      </li>
+    </ul>
+
+    <ul class="headerButtonList d-flex align-items-center">
+      <!--<li class="headerButtonList__item">
+        <%= link_to 'Sign In', new_user_session_path, :class => 'btn--size'  %>
+      </li>-->
+      <li class="headerButtonList__item">
+        <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-sm btn--size btn--visualGray' %>
+      </li>
+      <li class="headerButtonList__item">
+        <%= link_to 'Exit', destroy_user_session_path, method: :delete, :class => 'btn btn-sm btn--size btn--visualRed' %>
+      </li>
+    </ul>
+  </div>
+
+
+
+</div>
+</div>
+</header>
