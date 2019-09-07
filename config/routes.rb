@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'start_display/index'
 
-  # resources :tasks
+  resources :tasks
 
   resources :tasks do
     resources :comments
