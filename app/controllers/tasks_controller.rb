@@ -3,13 +3,13 @@ class TasksController < ApplicationController
 
   def index
     @q = Task.ransack(params[:q])
-    if !current_user.admin
-      # @tasks = Task.all.find_all { |task| task.assignee == current_user.email}
-      @tasks = @q.result.find_all { |task| task.assignee == current_user.email}
-    else
-      # @tasks = Task.all.find_all { |task| task.created_by == current_user.email}
-      @tasks = @q.result.find_all { |task| task.created_by == current_user.email}
-    end
+    @tasks = if !current_user.admin
+               # @tasks = Task.all.find_all { |task| task.assignee == current_user.email}
+               @q.result.find_all { |task| task.assignee == current_user.email }
+             else
+               # @tasks = Task.all.find_all { |task| task.created_by == current_user.email}
+               @q.result.find_all { |task| task.created_by == current_user.email }
+             end
   end
 
   def show
@@ -20,22 +20,18 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @status = [
-      ['0', 'ToDo'],
+      %w[0 ToDo],
       ['1', 'In Progress'],
-      ['2', 'In Rewiew'],      
+      ['2', 'In Rewiew']
     ]
-    if current_user.admin
-      @status.push(['3', 'Done'])      
-    end
+    @status.push(%w[3 Done]) if current_user.admin
   end
 
   def new
-    @task = Task.new    
+    @task = Task.new
     @users = []
     User.all.each do |user|
-      if !user.admin
-        @users.push([user.id,user.email])
-      end
+      @users.push([user.id, user.email]) unless user.admin
     end
   end
 

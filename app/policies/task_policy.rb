@@ -22,14 +22,10 @@ class TaskPolicy < ApplicationPolicy
   def index?
     return true if user.present?
   end
+
   def update?
-    if user.email == task.created_by
-      return true
-    end
-    if user.email == task.assignee
-      return true
-    end
-      
+    return true if user.email == task.created_by
+    return true if user.email == task.assignee
   end
 
   def destroy?

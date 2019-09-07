@@ -6,4 +6,3 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :created_by, presence: true
 end
-

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   # POST /users
   # POST /users.json
-  def create
-
-  end
+  def create; end
 end
