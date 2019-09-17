@@ -60,7 +60,7 @@ gem 'font-awesome-sass'
 gem 'rubocop-rspec'
 
 # Lazy authentication
-gem 'devise'
+gem "devise", ">= 4.7.1"
 
 # Fake
 gem 'faker'
